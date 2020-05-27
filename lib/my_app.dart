@@ -2,10 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:learntocount/app/locator.dart';
 import 'package:learntocount/counter.dart';
 import 'package:learntocount/flavor.dart';
+import 'package:learntocount/ui/views/home/home_view.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:learntocount/app/router.gr.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -23,10 +27,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider<Counter>(
+      /*home: ChangeNotifierProvider<Counter>(
           create: (context) => Counter(),
-          child: MyHomePage(title: 'Flutter Demo Home Page')
-      ),
+          //child: MyHomePage(title: 'Flutter Demo Home Page')
+          child: HomeView()
+      ),*/
+
+      initialRoute: Routes.homeViewRoute,
+      onGenerateRoute: Router().onGenerateRoute,
+      navigatorKey: locator<NavigationService>().navigatorKey,
     );
   }
 }
